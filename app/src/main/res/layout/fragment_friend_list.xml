@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/home_bg"
+    tools:context=".Fregments.FriendListFragment">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:foregroundGravity="center"
+        android:padding="@dimen/dimen10"
+        android:src="@drawable/friends" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_firstname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen20"
+            android:layout_marginEnd="@dimen/dimen20"
+            android:layout_marginBottom="@dimen/dimen20"
+            android:hint="FirstName" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_lastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen20"
+            android:layout_marginEnd="@dimen/dimen20"
+            android:layout_marginBottom="@dimen/dimen20"
+            android:hint="LastName" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_Addfriend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AddFriend" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

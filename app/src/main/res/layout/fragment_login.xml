@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".Fregments.LoginFragment">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:src="@drawable/ic_first" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="SALES TOP"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dimen20"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:text="Welcome Back!"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="@dimen/dimen15"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:text="Sign in to continue"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/dimen15"
+            android:layout_marginStart="@dimen/dimen15"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:text="Username"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_marginTop="@dimen/dimen35"
+            android:layout_marginStart="@dimen/dimen15"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:id="@+id/et_username"
+            android:textColor="@color/black"
+            android:layout_marginStart="@dimen/dimen15"
+            android:layout_marginEnd="@dimen/dimen15"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:text="Password"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_marginTop="@dimen/dimen35"
+            android:layout_marginStart="@dimen/dimen15"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:inputType="numberPassword"
+            android:textColor="@color/black"
+            android:id="@+id/et_password"
+            android:layout_marginStart="@dimen/dimen15"
+            android:layout_marginEnd="@dimen/dimen15"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="260dp"
+            android:text="Login Now"
+            android:gravity="center"
+            android:id="@+id/bt_login"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dimen30"
+            android:background="@drawable/log_btn"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:text="Forgot Password ?"
+            android:id="@+id/tx_forgotpass"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:layout_marginTop="@dimen/dimen20"
+            android:layout_height="wrap_content"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dimen35"
+        android:weightSum="3">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="5dp"
+            android:id="@+id/facebook"
+            android:src="@drawable/ic_facebook" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/twitter"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/ic_twitter" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="50dp"
+            android:id="@+id/likdin"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_linkdin" />
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dimen50"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:text="Don't have an account?"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:text="Sign Up"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:id="@+id/tx_signup"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>
