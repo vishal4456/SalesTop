@@ -2,87 +2,44 @@ package com.salestop.Fregments
 
 import android.app.DatePickerDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.ListView
 import android.widget.RadioButton
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.app.AlertDialog
-import androidx.core.view.get
+import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.salestop.*
 import com.salestop.Ext.nameVailded
+import com.salestop.Model.LoginVM
+import com.salestop.base.BaseFragment
 import com.salestop.databinding.FragmentSignupBinding
 import java.util.*
 
 
-class SignupFragment : Fragment() {
+class SignupFragment : BaseFragment<FragmentSignupBinding>(FragmentSignupBinding::inflate) {
 
-    private lateinit var binding: FragmentSignupBinding
     private lateinit var database: DatabaseReference
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        binding = FragmentSignupBinding.inflate(layoutInflater)
-        return binding.root
-    }
-
+    private lateinit var vm : LoginVM
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        vm = ViewModelProvider(this)[LoginVM::class.java]
         onClick()
         onBackPressed()
+        setObserver()
 
     }
 
-    private fun sendData() {
-        val list: MutableList<Friend>
-        database = FirebaseDatabase.getInstance().getReference("user")
-        //   val friend = Friend("onkar","Bhandri")
-        //list.add(friend)
-        val profile = Profile(
-            binding.etFirstname.text.toString(),
-            binding.etLastname.text.toString(),
-            binding.etUsername.text.toString(),
-            binding.etDob.text.toString(),
-            getGender(),
-            binding.etPassword.text.toString(),
-        )
-
-        database.child(binding.etUsername.text.toString()).setValue(profile).addOnSuccessListener {
-            binding.etFirstname.text?.clear()
-            binding.etLastname.text?.clear()
-            binding.etUsername.text?.clear()
-
-            Toast.makeText(context, "Added Data Successfuly", Toast.LENGTH_LONG).show()
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.nav_host_fragment_activity_main, OnboardingFragment()).commit()
-
+    fun setObserver() {
+        vm.msg.observe(viewLifecycleOwner){
+        Toast.makeText(requireContext(),it,Toast.LENGTH_LONG).show()
         }
-            .addOnFailureListener {
-                Toast.makeText(context, "Fail to add", Toast.LENGTH_LONG).show()
-
-            }
-
     }
 
-    fun openFragment(fragment: Fragment) {
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment_activity_main, fragment).commit()
+
+    override fun initView() {
+        super.initView()
+        onBackPressed()
     }
 
-    fun onBackPressed() {
-        requireActivity().onBackPressedDispatcher.addCallback(requireActivity(), object :
-            OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                openFragment(OnboardingFragment())
-            }
-
-        })
-    }
 
     private fun getGender(): String {
         val checked = binding.rgGender.checkedRadioButtonId
@@ -91,7 +48,7 @@ class SignupFragment : Fragment() {
 
     }
 
-    private fun onClick() {
+    override fun onClick() {
         binding.etDob.setOnClickListener {
             //  Toast.makeText(context,getGender(),Toast.LENGTH_SHORT).show()
             val c = Calendar.getInstance()
@@ -119,7 +76,16 @@ class SignupFragment : Fragment() {
         }
         binding.btSubmit.setOnClickListener {
             if (isVaild()) {
-                sendData()
+                val profile = Profile(
+                    binding.etFirstname.text.toString(),
+                    binding.etLastname.text.toString(),
+                    binding.etUsername.text.toString(),
+                    binding.etDob.text.toString(),
+                    getGender(),
+                    binding.etPassword.text.toString(),
+                )
+
+                 vm.signup(profile)
             }
 
             //    sendData()
@@ -144,8 +110,6 @@ class SignupFragment : Fragment() {
         } catch (e: ValidateName) {
             binding.etFirstname.requestFocus()
             binding.etFirstname.error = e.message
-
-
             return false
         }
 

@@ -6,22 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.salestop.R
-import com.salestop.SharePref
+import com.salestop.base.BaseFragment
+import com.salestop.database.SharePref
 import com.salestop.databinding.FragmentOnboardingBinding
 
 
-class OnboardingFragment : Fragment() {
-    private lateinit var binding: FragmentOnboardingBinding
+class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>(FragmentOnboardingBinding::inflate) {
     private lateinit var sharePref: SharePref
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        binding = FragmentOnboardingBinding.inflate(inflater)
-        // Inflate the layout for this fragment
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         sharePref = SharePref(context)
         onClick()
@@ -40,8 +31,7 @@ class OnboardingFragment : Fragment() {
         }
 
     }
-
-    private fun onClick() {
+    override fun onClick() {
         binding.btSign.setOnClickListener {
            parentFragmentManager.beginTransaction().replace(R.id.nav_host_fragment_activity_main,SignupFragment()).commit()
         }

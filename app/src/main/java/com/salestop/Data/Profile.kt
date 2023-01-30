@@ -7,4 +7,4 @@ data class Profile(val firstName: String?=null,
                    val gender: String?=null,
                    val password:String?=null
                     )
-data class Friend(val firstName: String?=null,val lastName: String? =null,)
+data class Friend(val firstName: String?=null,val lastName: String? =null)

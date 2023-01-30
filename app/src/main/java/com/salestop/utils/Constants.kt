@@ -1,4 +1,4 @@
-package com.salestop.Constants
+package com.salestop.utils
 
 object Constants {
 

@@ -12,30 +12,21 @@ import androidx.activity.OnBackPressedCallback
 import com.google.firebase.database.*
 import com.salestop.Profile
 import com.salestop.R
-import com.salestop.SharePref
+import com.salestop.base.BaseFragment
+import com.salestop.database.SharePref
 import com.salestop.databinding.FragmentLoginBinding
 
 
-class LoginFragment : Fragment() {
-    private lateinit var binding: FragmentLoginBinding
+class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
 
-    // private lateinit var db: SQLiteHelper
     lateinit var list: MutableList<Profile>
     lateinit var sharePref: SharePref
     private lateinit var dbref: DatabaseReference
     private lateinit var userArrayList: ArrayList<Profile>
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-
-        binding = FragmentLoginBinding.inflate(layoutInflater)
-        // Inflate the layout for this fragment
-        return binding.root
-    }
 
     @SuppressLint("Range")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         // db = SQLiteHelper(context)
         sharePref = SharePref(context)
 
@@ -48,26 +39,13 @@ class LoginFragment : Fragment() {
         binding.btLogin.setOnClickListener {
             getUserData()
 
-
-            // break
         }
 
     }
 
-
-    fun openFragment(fragment: Fragment) {
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment_activity_main, fragment).commit()
-    }
-
-    fun onBackPressed() {
-        requireActivity().onBackPressedDispatcher.addCallback(requireActivity(),
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    openFragment(OnboardingFragment())
-                }
-
-            })
+    override fun initView() {
+        super.initView()
+        onBackPressed()
     }
 
     @SuppressLint("Range")
@@ -88,16 +66,12 @@ class LoginFragment : Fragment() {
     }
 
     private fun getUserData() {
-
-
         dbref = FirebaseDatabase.getInstance().getReference("user")
         dbref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (userSnapshot in snapshot.children) {
                         val keyvalue = userSnapshot.getValue(Profile::class.java)
-                        //  Toast.makeText(context,keyvalue?.username.toString(),Toast.LENGTH_LONG).show()
-                        // Toast.makeText(context,keyvalue?.password.toString(),Toast.LENGTH_LONG).show()
 
                         if (keyvalue?.username.toString() == binding.etUsername.text.toString()) {
                             if (keyvalue?.password.toString() == binding.etPassword.text.toString()) {
@@ -113,22 +87,12 @@ class LoginFragment : Fragment() {
 
                             }
                         }
-                        //Toast.makeText(context, keyvalue?.username.toString(), Toast.LENGTH_LONG).show()
-                        //  userArrayList.add(keyvalue!!)
                     }
-                    /* userArrayList.forEach {
-                         Toast.makeText(context, it.username, Toast.LENGTH_LONG).show()
-                     }*/
-                    // Toast.makeText(context,userArrayList[1].firstName,Toast.LENGTH_LONG).show()
                 }
             }
-
-
-
             override fun onCancelled(error: DatabaseError) {
             }
         })
-
 
     }
 }

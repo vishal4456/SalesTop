@@ -1,10 +1,11 @@
-package com.salestop
+package com.salestop.database
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import com.google.gson.Gson
-import com.salestop.Constants.Constants
+import com.salestop.utils.Constants
+import com.salestop.Profile
 import com.salestop.utils.Util
 
 
